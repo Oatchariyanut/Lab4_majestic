@@ -1,13 +1,28 @@
-// IndexPage.spec.js
-import IndexPage from 'src/pages/IndexPage.vue'
-import { shallowMount } from '@vue/test-utils'
+<template>
+  <div class="htmlClass">
+    <h1>{{ title }}</h1>
+    <form>
+      <input type="text" id="firstName" v-model="firstName" />
+      <input type="text" id="secondName" v-model="secondName" />
+      <button @click="submitForm()" class="submitForm">Submit</button>
+  </form>
+  </div>
+</template>
 
-describe('IndexPage', () => {
-  it('should render correct contents', () => {
-    const wrapper = shallowMount(IndexPage)
-    let header = wrapper.find('.htmlClass h1')
-    expect(header.exists()).toBe(true)
-    expect(header.text())
-      .toBe('Vue is awesome.')
-  })
-})
+<script>
+export default {
+  name: 'InputPage',
+  data() {
+    return {
+      title: 'Vue is awesome.',
+      firstName: '',
+      secondName: '',
+    }
+  },
+  methods: {
+    submitForm() {
+      this.$emit('submit form')
+    },
+  }
+}
+</script>
